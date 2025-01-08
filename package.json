@@ -1,5 +1,5 @@
 {
-  "homepage": "https://franklynramon.github.io/Lista-de-compras/",
+  "homepage": "https://franklynramon.github.io/Lista-de-compras-React/",
   "name": "meu-projeto-react",
   "private": true,
   "version": "0.0.0",
@@ -26,7 +26,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
-    "gh-pages": "^6.1.1",
+    "gh-pages": "^6.3.0",
     "vite": "^5.0.8"
   },
   "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
