@@ -29,6 +29,9 @@ export const Container = styled.div`
   h1 {
     color: #fff;
     font-size: 35px;
+    display: flex;
+  justify-content: center;
+  align-items: center;
   }
 
   input {
