@@ -6,36 +6,40 @@ function Home() {
   const [produtos, setProdutos] = useState([]);
   const inputRef = useRef();
 
-  // Função para salvar os dados no LocalStorage
-  const salvar = (chave, valor) => {
-    localStorage.setItem(chave, JSON.stringify(valor));
-  };
-
-  // Função responsavel por pegar os dados do localStorage
+  // Carregar dados do localStorage ao montar o componente
   useEffect(() => {
     const produtoSalvo = JSON.parse(localStorage.getItem("ls_produtos"));
     if (produtoSalvo) setProdutos(produtoSalvo);
   }, []); // Executa apenas uma vez ao carregar a página
 
+  // Atualizar o localStorage automaticamente sempre que 'produtos' mudar
+  useEffect(() => {
+    if (produtos.length > 0) {
+      localStorage.setItem("ls_produtos", JSON.stringify(produtos));
+    }
+  }, [produtos]); // Observa mudanças no estado 'produtos'
+
   function cliqueiNoBotao() {
-    const novoProduto = inputRef.current.value.trim();
+    const novoProduto = inputRef.current.value.trim(); // Remove espaços extras
     if (novoProduto === "") return; // Evita salvar valores vazios
     setProdutos([{ id: v4(), nome: novoProduto }, ...produtos]);
     inputRef.current.value = ""; // Limpa o input após adicionar
   }
 
   function deletarProduto(id) {
-    setProdutos(produtos.filter((produto) => produto.id !== id));
-  }
+    // Atualiza o estado removendo o item pelo ID
+    const produtosAtualizados = produtos.filter((produto) => produto.id !== id);
+    setProdutos(produtosAtualizados);
 
+    // Atualiza o localStorage com a lista atualizada
+    localStorage.setItem("ls_produtos", JSON.stringify(produtosAtualizados));
+  }
+  
   return (
     <Container className="containe">
       <h1>Lista de Compras</h1>
-      <input placeholder="produto..." ref={inputRef} />
+      <input placeholder="Produto..." ref={inputRef} />
       <AddButton onClick={cliqueiNoBotao}>Adicionar</AddButton>
-      <AddButton onClick={() => salvar("ls_produtos", produtos)}>
-        salvar
-      </AddButton>
 
       <div className="content">
         {produtos.map((produto) => (
