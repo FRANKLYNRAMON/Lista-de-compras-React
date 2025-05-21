@@ -35,7 +35,7 @@ export const Container = styled.div`
   }
 
   input {
-    height: 35px;
+    height: 40px;
     border-radius: 5px;
     border: none;
     margin-top: 30px;
@@ -45,26 +45,30 @@ export const Container = styled.div`
   }
 
   .totalGeral {
-    color: black;
-    position: absolute;
-    bottom:13%;
+   display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
     border: 1px solid none;
     background: #8652ff;
+    margin-top: 10px;
   }
   
   .divInput {
    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Cria colunas com largura mínima de 200px e distribui o espaço restante */
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); /* Cria colunas com largura mínima de 200px e distribui o espaço restante */
     grid-gap: 5px; /* Espaçamento entre as colunas */
      text-align: center;
   }
   
-  .btn {
-    display: flex;
+   .btn {
+     margin-top: 10px;
+     margin-bottom: 10px;
+     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 10px;
-  }
+     
+   }
 `;
 
 export const AddButton = styled.button`
@@ -75,7 +79,8 @@ export const AddButton = styled.button`
   cursor: pointer;
   border: none;
   border-radius: 5px;
-  width: 200px;
+ // width: 160px;
+ 
 
   &:hover {
     opacity: 0.8;
@@ -86,7 +91,7 @@ export const Product = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 35px;
+  height: 40px;
   background: #fff;
   border-radius: 5px;
   margin-top: 15px;
@@ -96,6 +101,7 @@ export const Product = styled.div`
     text-transform: capitalize;
     font-weight: bold;
     padding: 3px;
+     font-size: 12px;
   }
 `;
 

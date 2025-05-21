@@ -51,6 +51,12 @@ function Home() {
   Se item.total for um número válido, usa item.total como está.
   */
 
+ // Formata os valores motetarios
+  const formatador = new Intl.NumberFormat('pt-BR', {
+  style: 'currency',
+  currency: 'BRL',
+});
+
   // função para update
     const atualizarProduto = (id, novosDados) => {
     const produtosAtualizados = produtos.map((produto) => produto.id === id ? { ...produto, ...novosDados} : produto);
@@ -71,9 +77,15 @@ function Home() {
     <Container className="containe">
       <h1>Lista de Compras</h1>
       <div className="divInput">
-      <input placeholder="Produto..." ref={inputRef} />
-      <input type="number" placeholder="Quantidade" ref={inputQnt} />
-      <input type="number" placeholder="Valor" ref={inputValor}/> <br/><br />
+      <input placeholder="Produto..." ref={inputRef} maxLength={20} />
+     <input type="number" placeholder="Quantidade" ref={inputQnt} onInput= {(e) => { const maxDigits = 5;
+    if (e.target.value.length > maxDigits) {
+      e.target.value = e.target.value.slice(0, maxDigits);
+    }}}/>
+      <input type="number" placeholder="Valor" ref={inputValor} onInput= {(e) => { const maxDigits = 7;
+    if (e.target.value.length > maxDigits) {
+      e.target.value = e.target.value.slice(0, maxDigits);
+    }}}/> 
       </div>
       <div className="btn">
       <AddButton onClick={cliqueiNoBotao}>Adicionar</AddButton>
@@ -86,9 +98,8 @@ function Home() {
           <Product key={produto.id}>
             <p>nome: {produto.nome} </p>
             <p>qnt: {produto.qnt ? produto.qnt : "0"} </p>
-            <p>Valor: R$ {produto.valor ? produto.valor : "0"}  </p>
-            <p>total: R$ {(produto.qnt * produto.valor).toFixed(2)}</p>
-
+            <p>Valor: {formatador.format(Number(produto.valor ?? 0))}</p>
+            <p>total: {formatador.format(Number(produto.qnt) * Number(produto.valor))}</p>
             <button onClick={() => atualizarProduto(produto.id, {nome: prompt("Novo Nome do Produto:", produto.nome),
               qnt: prompt("Nova Quantidade:", produto.qnt),
               valor: prompt("Novo Valor:", produto.valor)
@@ -100,11 +111,13 @@ function Home() {
           </Product>
         ))}
         </div>
-        <br />
-        <div className="totalGeral">
-          <h3>Total Geral: R$ { somaTotal.toFixed(2) }</h3>
-        </div>
+
       </div>
+        <div className="totalGeral">
+        <br />
+          <h3>Total Geral: R$ { formatador.format(Number(somaTotal)) }</h3>
+        </div>
+
     </Container>
   );
 }
