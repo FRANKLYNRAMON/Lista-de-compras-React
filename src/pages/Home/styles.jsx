@@ -30,8 +30,8 @@ export const Container = styled.div`
     color: #fff;
     font-size: 35px;
     display: flex;
-  justify-content: center;
-  align-items: center;
+    justify-content: center;
+    align-items: center;
   }
 
   input {
@@ -43,6 +43,28 @@ export const Container = styled.div`
     padding-left: 5px;
     padding-right: 25px;
   }
+
+  .totalGeral {
+    color: black;
+    position: absolute;
+    bottom:13%;
+    border: 1px solid none;
+    background: #8652ff;
+  }
+  
+  .divInput {
+   display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Cria colunas com largura mínima de 200px e distribui o espaço restante */
+    grid-gap: 5px; /* Espaçamento entre as colunas */
+     text-align: center;
+  }
+  
+  .btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+  }
 `;
 
 export const AddButton = styled.button`
@@ -53,7 +75,7 @@ export const AddButton = styled.button`
   cursor: pointer;
   border: none;
   border-radius: 5px;
-  margin-left: 10px;
+  width: 200px;
 
   &:hover {
     opacity: 0.8;
@@ -68,11 +90,12 @@ export const Product = styled.div`
   background: #fff;
   border-radius: 5px;
   margin-top: 15px;
-  padding: 0 10px;
+  padding: 0 15px;
 
   p {
     text-transform: capitalize;
     font-weight: bold;
+    padding: 3px;
   }
 `;
 
